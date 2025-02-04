@@ -20,7 +20,7 @@ For team-managed projects (like this one), even if you have the access to make c
 After creating a fork of a repository, make sure to [configure a remote][git_configure_remote] first so the fork can sync up with the remote repository. For example, when working on a fork from this repository, do this first:
 
 ```batch
-git add upstream https://github.com/ms-iot/vscode-ros
+git add upstream https://github.com/ranchhandrobotics/rde-ros-2
 ```
 
 *Note: the remote name does not need to be `upstream`, we are just using `upstream` as an example*
@@ -60,7 +60,7 @@ As a TypeScript project, this extension has dependencies on:
 After installing `node` (and `npm`), clone the repository.
 
 ```bash
-git clone https://github.com/ms-iot/vscode-ros
+git clone https://github.com/ranchhandrobotics/rde-ros-2
 ```
 
 ### Build

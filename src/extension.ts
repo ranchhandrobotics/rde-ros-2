@@ -49,18 +49,18 @@ export async function resolvedEnv() {
 let subscriptions = <vscode.Disposable[]>[];
 
 export enum Commands {
-    CreateTerminal = "ros.createTerminal",
-    GetDebugSettings = "ros.getDebugSettings",
-    Rosrun = "ros.rosrun",
-    Roslaunch = "ros.roslaunch",
-    Rostest = "ros.rostest",
-    Rosdep = "ros.rosdep",
-    ShowCoreStatus = "ros.showCoreStatus",
-    StartRosCore = "ros.startCore",
-    TerminateRosCore = "ros.stopCore",
-    UpdateCppProperties = "ros.updateCppProperties",
-    UpdatePythonPath = "ros.updatePythonPath",
-    PreviewURDF = "ros.previewUrdf",
+    CreateTerminal = "RDE.createTerminal",
+    GetDebugSettings = "RDE.getDebugSettings",
+    Rosrun = "RDE.rosrun",
+    Roslaunch = "RDE.roslaunch",
+    Rostest = "RDE.rostest",
+    Rosdep = "RDE.rosdep",
+    ShowCoreStatus = "RDE.showCoreStatus",
+    StartRosCore = "RDE.startCore",
+    TerminateRosCore = "RDE.stopCore",
+    UpdateCppProperties = "RDE.updateCppProperties",
+    UpdatePythonPath = "RDE.updatePythonPath",
+    PreviewURDF = "RDE.previewUrdf",
 }
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -305,7 +305,7 @@ async function sourceRosAndWorkspace(): Promise<void> {
                 // Replace all occurrences of '${workspaceFolder}' with the workspace string
                 rosSetupScript = rosSetupScript.replace(regex, vscode.workspace.workspaceFolders[0].uri.fsPath);
             } else {
-                outputChannel.appendLine(`Multiple or no workspaces found, but the ROS setup script setting \"ros.rosSetupScript\" is configured with '${rosSetupScript}'`);
+                outputChannel.appendLine(`Multiple or no workspaces found, but the ROS setup script setting \"RDE.rosSetupScript\" is configured with '${rosSetupScript}'`);
             }
         }
 
@@ -346,7 +346,7 @@ async function sourceRosAndWorkspace(): Promise<void> {
                 // dump installedDistros to outputChannel
                 outputChannel.appendLine(`Installed distros: ${installedDistros}`);
 
-                const message = "Unable to determine ROS distribution, please configure this workspace by adding \"ros.distro\": \"<ROS Distro>\" in settings.json";
+                const message = "Unable to determine ROS distribution, please configure this workspace by adding \"RDE.distro\": \"<ROS Distro>\" in settings.json";
                 await vscode.window.setStatusBarMessage(message, kWorkspaceConfigTimeout);
             }
         }

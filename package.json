@@ -1,5 +1,5 @@
 {
-    "name": "vscode-ros-2",
+    "name": "rde-ros-2",
     "version": "0.0.1",
     "publisher": "ranchhandrobotics",
     "engines": {
@@ -8,8 +8,8 @@
     "author": {
         "name": "Ranchhand Robotics"
     },
-    "displayName": "ROS",
-    "description": "Develop Robot Operating System (ROS) with Visual Studio Code.",
+    "displayName": "RDE",
+    "description": "Robot Developer Environment for developing Robot Operating System (ROS) 2 with Visual Studio Code.",
     "icon": "media/icon.png",
     "aiKey": "AIF-d9b70cd4-b9f9-4d70-929b-a071c400b217",
     "categories": [
@@ -27,13 +27,13 @@
         "robot"
     ],
     "license": "SEE LICENSE IN LICENSE",
-    "homepage": "https://github.com/ms-iot/vscode-ros",
+    "homepage": "https://github.com/ranchhandrobotics/rde-ros-2",
     "repository": {
         "type": "git",
-        "url": "https://github.com/ms-iot/vscode-ros"
+        "url": "https://github.com/ranchhandrobotics/rde-ros-2"
     },
     "bugs": {
-        "url": "https://github.com/ms-iot/vscode-ros/issues"
+        "url": "https://github.com/ranchhandrobotics/rde-ros-2/issues"
     },
     "preview": true,
     "main": "./dist/extension",
@@ -45,75 +45,75 @@
         "workspaceContains:**/package.xml",
         "onWebviewPanel:ros2Status",
         "onDebug",
-        "onDebugResolve:ros",
-        "onDebugDynamicConfigurations:ros"
+        "onDebugResolve:rde2",
+        "onDebugDynamicConfigurations:rde2"
     ],
     "contributes": {
         "commands": [
             {
-                "command": "ros.createTerminal",
+                "command": "RDE.createTerminal",
                 "title": "Create Terminal",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.rosrun",
+                "command": "RDE.rosrun",
                 "title": "Run a ROS executable (ros2 run)",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.roslaunch",
+                "command": "RDE.roslaunch",
                 "title": "Run a ROS launch file (ros2 launch)",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.rostest",
+                "command": "RDE.rostest",
                 "title": "Run a ROS test file (rostest)",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.showCoreStatus",
+                "command": "RDE.showCoreStatus",
                 "title": "Show Status",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.startCore",
+                "command": "RDE.startCore",
                 "title": "Start",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.stopCore",
+                "command": "RDE.stopCore",
                 "title": "Stop",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.updateCppProperties",
+                "command": "RDE.updateCppProperties",
                 "title": "Update C++ Properties",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.updatePythonPath",
+                "command": "RDE.updatePythonPath",
                 "title": "Update Python Path",
-                "category": "ROS"
+                "category": "RDE"
             },
             {
-                "command": "ros.rosdep",
+                "command": "RDE.rosdep",
                 "title": "Install ROS Dependencies for this workspace using rosdep",
-                "category": "ROS"
+                "category": "RDE"
             }
         ],
         "configuration": {
             "type": "object",
-            "title": "ROS",
+            "title": "RDE",
             "properties": {
-                "ros.distro": {
+                "RDE.distro": {
                     "type": "string",
                     "description": "ROS installation distro to be sourced."
                 },
-                "ros.rosSetupScript": {
+                "RDE.rosSetupScript": {
                     "type": "string",
                     "description": "ROS workspace setup script. Overrides ros.distro."
                 },
-                "ros.isolateEnvironment": {
+                "RDE.isolateEnvironment": {
                     "type": "bool",
                     "default": false,
                     "description": "Specify if the extension should not capture the environment VSCode is running in to pass to child processes."
@@ -122,8 +122,8 @@
         },
         "debuggers": [
             {
-                "type": "ros",
-                "label": "ROS",
+                "type": "RDE",
+                "label": "RDE",
                 "program": "./out/src/debugger/main.js",
                 "runtime": "node",
                 "configurationAttributes": {
@@ -236,21 +236,21 @@
                 },
                 "configurationSnippets": [
                     {
-                        "label": "ROS: Launch",
+                        "label": "RDE: ROS 2 Launch",
                         "description": "Debug ROS node(s) at launch.",
                         "body": {
-                            "name": "ROS: Launch",
-                            "type": "ros",
+                            "name": "RDE: Launch",
+                            "type": "RDE",
                             "request": "launch",
                             "target": "absolute path to launch file"
                         }
                     },
                     {
-                        "label": "ROS: Attach",
+                        "label": "RDE: ROS 2 Attach",
                         "description": "Debug a ROS node by attaching to it.",
                         "body": {
-                            "name": "ROS: Attach",
-                            "type": "ros",
+                            "name": "RDE: Attach",
+                            "type": "RDE",
                             "request": "attach"
                         }
                     }
@@ -273,7 +273,7 @@
                 ]
             },
             {
-                "id": "ros.msg",
+                "id": "RDE.msg",
                 "aliases": [
                     "ROS Message"
                 ],
@@ -287,8 +287,8 @@
         ],
         "grammars": [
             {
-                "language": "ros.msg",
-                "scopeName": "source.ros.msg",
+                "language": "RDE.msg",
+                "scopeName": "source.rde.msg",
                 "path": "./languages/syntaxes/ros.msg.tmLanguage.json"
             }
         ],
@@ -338,7 +338,7 @@
         ],
         "taskDefinitions": [
             {
-                "type": "ros",
+                "type": "RDE",
                 "required": [
                     "command"
                 ],
@@ -365,7 +365,7 @@
         ]
     },
     "scripts": {
-        "package:dev": "vsce package -o vscode-ros-dev.vsix",
+        "package:dev": "vsce package -o rde-ros-2-dev.vsix",
         "compile": "npm run package",
         "lint": "eslint -p ./",
         "pretest": "npm run compile",

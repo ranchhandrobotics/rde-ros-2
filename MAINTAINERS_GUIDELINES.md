@@ -78,7 +78,7 @@ Reasoning:
 Before preparing a release, you should check the health of this extension, for example,
 
 1. Check the latest CI status:
-   ![.github/workflows/workflow.yml](https://github.com/ms-iot/vscode-ros/workflows/.github/workflows/workflow.yml/badge.svg?event=push)
+   ![.github/workflows/workflow.yml](https://github.com/ranchhandrobotics/rde-ros-2/workflows/.github/workflows/workflow.yml/badge.svg?event=push)
 
 2. Run through the basic scenarios manually on Linux and Windows environments.
     - Start, terminate, and monitor ROS core
@@ -110,24 +110,24 @@ The following will be touched:
 - update `CHANGELOG.md`
 - update version number in `package.json` and `package-lock.json`
 
-> You can find an example commit [here](https://github.com/ms-iot/vscode-ros/commit/3091180d319d2ca87736cd50c1293dd26151a0b8).
+> You can find an example commit [here](https://github.com/ranchhandrobotics/rde-ros-2/commit/3091180d319d2ca87736cd50c1293dd26151a0b8).
 
 #### Authorizing a release (through GitHub releases)
 
 The release process is integrated and automated with [GitHub releases](https://docs.github.com/en/github/administering-a-repository/about-releases). Here are 3-easy steps to kick off one.
 
-1. [Draft a new release](https://github.com/ms-iot/vscode-ros/releases/new).
+1. [Draft a new release](https://github.com/ranchhandrobotics/rde-ros-2/releases/new).
 
 2. Fill the version number and release note. (Keep the target branch as `master`.)
    ![](/media/documentation/draft-release.png)
 
 3. Click `Publish release`.
 
-Once it is kicked off, GitHub release will automatically tag your latest commit from the `master` and a GitHub action will automatically be triggered to build and publish the extension to VS Code extension marketplace. For example, here is [one release run](https://github.com/ms-iot/vscode-ros/actions/runs/580197093) in the past.
+Once it is kicked off, GitHub release will automatically tag your latest commit from the `master` and a GitHub action will automatically be triggered to build and publish the extension to VS Code extension marketplace. For example, here is [one release run](https://github.com/ranchhandrobotics/rde-ros-2/actions/runs/580197093) in the past.
 
 #### Post-release Activities
 
-To get `master` ready for the next release, it is encouraged to update the version number immediately after a release is published. You can find an example commit [here](https://github.com/ms-iot/vscode-ros/commit/3fd13ba1def4f0eee3a0fc9e0e58db7558e119a3).
+To get `master` ready for the next release, it is encouraged to update the version number immediately after a release is published. You can find an example commit [here](https://github.com/ranchhandrobotics/rde-ros-2/commit/3fd13ba1def4f0eee3a0fc9e0e58db7558e119a3).
 
 
 <!-- link to external sites -->
@@ -136,4 +136,4 @@ To get `master` ready for the next release, it is encouraged to update the versi
 [git_tagging]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
 [gitflow_workflow]: https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 [semver_guidelines]: https://semver.org/#semantic-versioning-specification-semver
-[vscode-ros.ci]: https://github.com/ms-iot/vscode-ros/actions
+[vscode-ros.ci]: https://github.com/ranchhandrobotics/rde-ros-2/actions

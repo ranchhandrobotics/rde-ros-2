@@ -16,11 +16,11 @@ export class RosShellTaskProvider implements vscode.TaskProvider {
     }
 
     public defaultRosTasks(): vscode.Task[] {
-        const rosCore = make('ros core', {type: 'ros', command: 'roscore'}, 'roscore');
+        const rosCore = make('ros core', {type: 'RDE', command: 'roscore'}, 'roscore');
         rosCore.isBackground = true;
         rosCore.problemMatchers = ['$roscore'];
 
-        const rosLaunch = make('ros launch', {type: 'ros', command: 'roslaunch', args: ['package_name', 'launch_file.launch']}, 'roslaunch');
+        const rosLaunch = make('ros launch', {type: 'RDE', command: 'roslaunch', args: ['package_name', 'launch_file.launch']}, 'roslaunch');
         rosLaunch.isBackground = true;
         rosLaunch.problemMatchers = ['$roslaunch'];
 
@@ -34,7 +34,7 @@ export class RosShellTaskProvider implements vscode.TaskProvider {
 
 export function registerRosShellTaskProvider(): vscode.Disposable[] {
     return [
-        vscode.tasks.registerTaskProvider('ros', new RosShellTaskProvider()),
+        vscode.tasks.registerTaskProvider('RDE', new RosShellTaskProvider()),
     ];
 }
 

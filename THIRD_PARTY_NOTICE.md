@@ -2,7 +2,7 @@
 
 *Do Not Translate or Localize*
 
-This project (`ranchhandrobotics/vscode-ros-2`) is created as an independent project based on (`ms-iot/vscode-ros`) with permission from Microsoft. That project was is created as a fork from the original project ([`ajshort/vscode-ros`](https://github.com/ajshort/vscode-ros)). Copyright headers based on the original license were added to the source code from the original project.
+This project (`ranchhandrobotics/rde-ros-2`) is created as an independent project based on (`ranchhandrobotics/rde-ros-2`) with permission from Microsoft. That project was is created as a fork from the original project ([`ajshort/vscode-ros`](https://github.com/ajshort/vscode-ros)). Copyright headers based on the original license were added to the source code from the original project.
 
 The original copyright notice and the license under which Microsoft received such third party material are set forth below. Microsoft reserves all other rights not expressly granted, whether by implication, estoppel or otherwise.
 

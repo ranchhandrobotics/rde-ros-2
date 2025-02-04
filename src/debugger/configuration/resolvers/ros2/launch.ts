@@ -68,7 +68,7 @@ export class LaunchResolver implements vscode.DebugConfigurationProvider {
                 await delay(interval_ms);
             }
 
-            extension.outputChannel.appendLine("Waited " + timeWaited + " for ROS2 Daemon to start. Proceeding without the Daemon.");
+            extension.outputChannel.appendLine("Waited " + timeWaited + " for ROS 2 Daemon to start. Proceeding without the Daemon.");
         }
 
         const rosExecOptions: child_process.ExecOptions = {
@@ -153,7 +153,7 @@ export class LaunchResolver implements vscode.DebugConfigurationProvider {
         }
 
         // Filter shell scripts - just launch them
-        //  https://github.com/ms-iot/vscode-ros/issues/474 
+        //  https://github.com/ranchhandrobotics/rde-ros-2/issues/474 
         let executableExt = path.extname(executable);
         if (executableExt && 
             ["bash", "sh", "bat", "cmd", "ps1"].includes(executableExt)) {

@@ -130,7 +130,7 @@ if __name__ == "__main__":
                     sys.stdout = mystring
 
             # Lifecycle node support
-            # https://github.com/ms-iot/vscode-ros/issues/632
+            # https://github.com/ranchhandrobotics/rde-ros-2/issues/632
             # Lifecycle nodes use a long running future to monitor the state of the nodes.
             # cancel this task, so that we can shut down the executor in ros_adapter
             async_future = entity.get_asyncio_future()
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 
     # Shutdown the ROS Adapter 
     # so that long running tasks shut down correctly in the debug bootstrap scenario.
-    # https://github.com/ms-iot/vscode-ros/issues/632
+    # https://github.com/ranchhandrobotics/rde-ros-2/issues/632
     ros_adapter = get_ros_adapter(context)
     if ros_adapter is not None:
         ros_adapter.shutdown()

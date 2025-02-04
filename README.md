@@ -1,4 +1,4 @@
-# Visual Studio Code Robotics IDE for ROS 2
+# Robotics Development Environment for ROS 2 within Visual Studio Code
 From the maintainer of the popular Visual Studio Code ROS extension, this is a Extension which provides support for [Robot Operating System 2 (ROS 2)][http://ros.org] development ROS 2 on Windows, Linux and MacOS. The Robot Operating System is a trademark of Open Robotics.
 
 ## Features
@@ -13,6 +13,7 @@ From the maintainer of the popular Visual Studio Code ROS extension, this is a E
 * Format C++ using the ROS `clang-format` style.
 * Debug a single ROS node (C++ or Python) by [attaching to the process][debug_support-attach].
 * Debug ROS nodes (C++ or Python) [launched from a `.launch` file][debug_support-launch].
+* Configure Intellisense
 
 ## Commands
 
@@ -20,21 +21,21 @@ You can access the following commands from the [Visual Studio Code command palle
 
 | Name | Description |
 |---|:---|
-| ROS: Create Terminal | Create a terminal with the ROS environment. |
-| ROS: Show Status | Open a detail view showing ROS core runtime status. |
-| ROS: Start | Start ROS1 core or ROS2 Daemon. |
-| ROS: Stop  | Terminate ROS core or ROS2 Daemon. |
-| ROS: Update C++ Properties | Update the C++ IntelliSense configuration to include ROS and your ROS components. |
-| ROS: Update Python Path | Update the Python IntelliSense configuration to include ROS. |
-| ROS: Preview URDF | Preview URDF and Xacro files. The display will update after the root URDF changes are saved. |
-| ROS: Install ROS Dependencies for this workspace using rosdep | Shortcut for `rosdep install --from-paths src --ignore-src -r -y`. |
+| RDE: Create Terminal | Create a terminal with the ROS environment. |
+| RDE: Show Status | Open a detail view showing ROS core runtime status. |
+| RDE: Start | Start ROS1 core or ROS2 Daemon. |
+| RDE: Stop  | Terminate ROS core or ROS2 Daemon. |
+| RDE: Update C++ Properties | Update the C++ IntelliSense configuration to include ROS and your ROS components. |
+| RDE: Update Python Path | Update the Python IntelliSense configuration to include ROS. |
+| RDE: Preview URDF | Preview URDF and Xacro files. The display will update after the root URDF changes are saved. |
+| RDE: Install ROS Dependencies for this workspace using rosdep | Shortcut for `rosdep install --from-paths src --ignore-src -r -y`. |
 
 ## Tutorials and Walkthroughs
 
 | Name | Description |
 |---|:---|
-| [Attaching to a running ROS Node](https://github.com/ms-iot/vscode-ros/blob/master/doc/debug-support.md) | Learn how to attach VS Code to a running ROS node |
-| [Debugging all ROS Nodes in a launch file ](https://github.com/ms-iot/vscode-ros/blob/master/doc/debug-support.md) | Learn how to set up VS Code to debug the nodes in a ROS Launch file |
+| [Attaching to a running ROS Node](https://github.com/ranchhandrobotics/rde-ros-2/blob/master/doc/debug-support.md) | Learn how to attach VS Code to a running ROS node |
+| [Debugging all ROS Nodes in a launch file ](https://github.com/ranchhandrobotics/rde-ros-2/blob/master/doc/debug-support.md) | Learn how to set up VS Code to debug the nodes in a ROS Launch file |
 | [ROSCON 2019 ROS Extension Talk Video](https://vimeopro.com/osrfoundation/roscon-2019/video/379127667) | Walkthrough of VS Code from ROSCon 2019|
 | [Deep Dive - Episode 0](https://youtu.be/PBbEhRf8QjE) |  About the VS Code ROS extension @ a Polyhobbyist |
 | [Deep Dive - Episode 1](https://youtu.be/bupAju0UAMg) |  Installing on Windows & WSL @ a Polyhobbyist |
@@ -89,7 +90,7 @@ If you have an existing `launch.json` file (or if there is an extension conflict
           "request": "launch",
           "target": "<full path to your launch.py or launch file>",
           "launch": ["rviz", "gz", "gzserver", "gzclient"],
-          "type": "ros"
+          "type": "RDE"
       }
     ]
 }  
