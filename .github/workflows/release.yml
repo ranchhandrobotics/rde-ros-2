@@ -1,0 +1,63 @@
+name: Create release
+
+on:
+  workflow_dispatch:
+    inputs:
+      prerelease:
+        description: 'Prerelease'    
+        required: true
+        default: 'true'
+      tags:
+        description: 'Version Tag'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release ${{ github.event.inputs.tags }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.x
+      - run: npm install
+      - name: Build VSIX package
+        run: |
+          npm install @vscode/vsce -g
+          npm run build
+      - name: Build Prerelease VSIX package
+        if: ${{ github.event.inputs.prerelease == 'true' }}
+        run: |
+          vsce package --pre-release -o rde-ros-2-dev.vsix
+      - name: Create Prerelease
+        if: ${{ github.event.inputs.prerelease == 'true'}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "${{ github.event.inputs.tags }}" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="Prerelease ${{ github.event.inputs.tags }}" \
+              --generate-notes \
+              --prerelease \
+              rde-ros-2-dev.vsix
+      - name: Build Release VSIX package
+        if: ${{ github.event.inputs.prerelease == 'false' }}
+        run: |
+          vsce package -o rde-ros-2.vsix
+      - name: Create Release
+        if: ${{ github.event.inputs.prerelease == 'false' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+        run: |
+          gh release create "${{ github.event.inputs.tags }}" \
+              --repo="$GITHUB_REPOSITORY" \
+              --title="Release ${{ github.event.inputs.tags }}" \
+              --generate-notes \
+              rde-ros-2.vsix
