@@ -366,7 +366,7 @@
     },
     "scripts": {
         "package:dev": "vsce package -o rde-ros-2-dev.vsix",
-        "compile": "npm run package",
+        "build": "npm run package",
         "lint": "eslint -p ./",
         "pretest": "npm run compile",
         "test": "node ./out/src/test/runTest.js",
