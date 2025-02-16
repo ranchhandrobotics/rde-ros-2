@@ -47,7 +47,6 @@ jobs:
           npm run build
           vsce package -o rde-ros-2-dev.vsix
       - uses: actions/upload-artifact@v4
-        if: github.event_name == 'push'
         with:
           name: rde-ros-2-dev-vsix
           path: rde-ros-2-dev.vsix
