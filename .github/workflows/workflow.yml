@@ -27,7 +27,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 22.x
       - run: npm install
   archive-vsix:
     runs-on: ubuntu-latest
@@ -38,28 +38,28 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 22.x
       - run: npm install
       - name: Build VSIX package
         run: |
-          npm install vsce -g
+          npm install @vscode/vsce -g
           npm run compile
-          vsce package -o vscode-ros-dev.vsix
+          vsce package -o rde-ros-2-dev.vsix
       - uses: actions/upload-artifact@v1
         if: github.event_name == 'push'
         with:
-          name: vscode-ros-dev-vsix
-          path: vscode-ros-dev.vsix
+          name: rde-ros-2-dev-vsix
+          path: rde-ros-2-dev.vsix
   publish-vsix:
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published' && github.repository == 'ms-iot/vscode-ros'
+    if: github.event_name == 'release' && github.event.action == 'published' && github.repository == 'Ranch-Hand-Robotics/rde-ros-2'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 22.x
       - run: npm install
       - name: Build VSIX package
         run: |
@@ -72,7 +72,7 @@ jobs:
       - name: Build Prerelease VSIX package
         if: 'github.event.release.prerelease'
         run: |
-          vsce package --pre-release -o vscode-ros.vsix
+          vsce package --pre-release -o rde-ros-2.vsix
       - name: Publish Release VSIX package
         if: '!github.event.release.prerelease'
         run: |
