@@ -1,5 +1,7 @@
-# Robotics Development Environment for ROS 2 within Visual Studio Code
-From the maintainer of the popular Visual Studio Code ROS extension, this is a Extension which provides support for [Robot Operating System 2 (ROS 2)][http://ros.org] development ROS 2 on Windows, Linux and MacOS. The Robot Operating System is a trademark of Open Robotics.
+# Robotics Development Extensions for ROS 2 within Visual Studio Code
+This is a Visual Studio Code Extension that  provides debugging support for [Robot Operating System 2 (ROS 2)][http://ros.org] development ROS 2 on Windows, Linux and MacOS. The Robot Operating System is a trademark of Open Robotics.
+
+> NOTE: This extension is rebranded and re-released by Ranch Hand Robotics, owned by the maintainer of the [MS-IOT VSCode ROS Extension](https://github.com/ms-iot/vscode-ros) with permission from Microsoft. The source extension was split into 3 parts - ROS 1, ROS 2 and a URDF editor.
 
 ## Features
 
