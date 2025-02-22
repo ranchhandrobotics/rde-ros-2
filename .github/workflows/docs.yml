@@ -17,8 +17,6 @@ jobs:
         run: |
           sudo apt-get install -y python3-pip
           pip3 install mkdocs
-          pip3 install mkdocs-readthedocs
-          pip3 install mkdocs-git-revision-date-localized-plugin
           pip3 install pymdown-extensions
           mkdocs gh-deploy --force
 
