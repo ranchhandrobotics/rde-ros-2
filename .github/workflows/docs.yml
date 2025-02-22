@@ -14,9 +14,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Deploy docs
-        uses: mhausenblas/mkdocs-deploy-gh-pages@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CONFIG_FILE: mkdocs.yml
-          EXTRA_PACKAGES: build-base
-          # REQUIREMENTS: docs/requirements.txt
+        run: |
+          sudo apt-get install -y python3-pip
+          pip3 install mkdocs
+          pip3 install mkdocs-readthedocs
+          pip3 install mkdocs-git-revision-date-localized-plugin
+          pip3 install pymdown-extensions
+          mkdocs gh-deploy --force
+
