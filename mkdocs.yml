@@ -1,0 +1,26 @@
+site_name: Robot Developer Extensions for ROS 2
+repo_url: https://github.com/ranch-hand-robotics/rde-ros-2
+edit_uri: edit/master/docs/
+nav:
+  - Home: index.md
+  - Usage:
+      - usage.md
+      - tutorials.md
+      - configuration.md
+  - Debugging:
+      - debug-support.md
+      - launchdebugging.md
+  - Troubleshooting:  troubleshooting.md
+
+theme: 
+  name: readthedocs
+  color_mode: auto
+  user_color_mode_toggle: true
+
+markdown_extensions:
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
+use_directory_urls: false
+strict: true

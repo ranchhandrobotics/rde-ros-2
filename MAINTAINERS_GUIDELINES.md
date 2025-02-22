@@ -119,7 +119,7 @@ The release process is integrated and automated with [GitHub releases](https://d
 1. [Draft a new release](https://github.com/ranchhandrobotics/rde-ros-2/releases/new).
 
 2. Fill the version number and release note. (Keep the target branch as `master`.)
-   ![](/media/documentation/draft-release.png)
+   ![](/docs/assets/draft-release.png)
 
 3. Click `Publish release`.
 
