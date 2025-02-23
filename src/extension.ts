@@ -64,119 +64,111 @@ export enum Commands {
 }
 
 export async function activate(context: vscode.ExtensionContext) {
-    let init = vscode.window.withProgress({
-        location: vscode.ProgressLocation.Notification,
-        title: "ROS Extension Initializing...",
-        cancellable: false
-    }, async (progress, token) => {
-        const reporter = telemetry.getReporter();
-        extPath = context.extensionPath;
-        outputChannel = vscode_utils.createOutputChannel();
-        context.subscriptions.push(outputChannel);
+    const reporter = telemetry.getReporter();
+    extPath = context.extensionPath;
+    outputChannel = vscode_utils.createOutputChannel();
+    context.subscriptions.push(outputChannel);
 
-        // Activate components when the ROS env is changed.
-        context.subscriptions.push(onDidChangeEnv(activateEnvironment.bind(null, context)));
+    // Activate components when the ROS env is changed.
+    context.subscriptions.push(onDidChangeEnv(activateEnvironment.bind(null, context)));
 
-        // Activate components which don't require the ROS env.
-        context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider(
-            "cpp", new cpp_formatter.CppFormatter()
-        ));
+    // Activate components which don't require the ROS env.
+    context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider(
+        "cpp", new cpp_formatter.CppFormatter()
+    ));
 
-        // Source the environment, and re-source on config change.
-        let config = vscode_utils.getExtensionConfiguration();
+    // Source the environment, and re-source on config change.
+    let config = vscode_utils.getExtensionConfiguration();
 
-        context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(() => {
-            const updatedConfig = vscode_utils.getExtensionConfiguration();
-            const fields = Object.keys(config).filter(k => !(config[k] instanceof Function));
-            const changed = fields.some(key => updatedConfig[key] !== config[key]);
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(() => {
+        const updatedConfig = vscode_utils.getExtensionConfiguration();
+        const fields = Object.keys(config).filter(k => !(config[k] instanceof Function));
+        const changed = fields.some(key => updatedConfig[key] !== config[key]);
 
-            if (changed) {
-                sourceRosAndWorkspace();
-            }
+        if (changed) {
+            sourceRosAndWorkspace();
+        }
 
-            config = updatedConfig;
-        }));
+        config = updatedConfig;
+    }));
 
-        vscode.commands.registerCommand(Commands.CreateTerminal, () => {
-            ensureErrorMessageOnException(() => {
-                ros_utils.createTerminal(context);
-            });
+    vscode.commands.registerCommand(Commands.CreateTerminal, () => {
+        ensureErrorMessageOnException(() => {
+            ros_utils.createTerminal(context);
         });
-
-        vscode.commands.registerCommand(Commands.GetDebugSettings, () => {
-            ensureErrorMessageOnException(() => {
-                return debug_utils.getDebugSettings(context);
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.ShowCoreStatus, () => {
-            ensureErrorMessageOnException(() => {
-                rosApi.showCoreMonitor();
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.StartRosCore, () => {
-            ensureErrorMessageOnException(() => {
-                rosApi.startCore();
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.TerminateRosCore, () => {
-            ensureErrorMessageOnException(() => {
-                rosApi.stopCore();
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.UpdateCppProperties, () => {
-            ensureErrorMessageOnException(() => {
-                return ros_build_utils.updateCppProperties(context);
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.UpdatePythonPath, () => {
-            ensureErrorMessageOnException(() => {
-                ros_build_utils.updatePythonPath(context);
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.Rosrun, () => {
-            ensureErrorMessageOnException(() => {
-                return ros_cli.rosrun(context);
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.Roslaunch, () => {
-            ensureErrorMessageOnException(() => {
-                return ros_cli.roslaunch(context);
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.Rostest, () => {
-            ensureErrorMessageOnException(() => {
-                return ros_cli.rostest(context);
-            });
-        });
-
-        vscode.commands.registerCommand(Commands.Rosdep, () => {
-            ensureErrorMessageOnException(() => {
-                rosApi.rosdep();
-            });
-        });
-
-
-        reporter.sendTelemetryActivate();
-
-
-        // Activate the workspace environment if possible.
-        await activateEnvironment(context);
-
-        return {
-            getEnv: () => env,
-            onDidChangeEnv: (listener: () => any, thisArg: any) => onDidChangeEnv(listener, thisArg),
-        };
     });
 
-    return await init;
+    vscode.commands.registerCommand(Commands.GetDebugSettings, () => {
+        ensureErrorMessageOnException(() => {
+            return debug_utils.getDebugSettings(context);
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.ShowCoreStatus, () => {
+        ensureErrorMessageOnException(() => {
+            rosApi.showCoreMonitor();
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.StartRosCore, () => {
+        ensureErrorMessageOnException(() => {
+            rosApi.startCore();
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.TerminateRosCore, () => {
+        ensureErrorMessageOnException(() => {
+            rosApi.stopCore();
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.UpdateCppProperties, () => {
+        ensureErrorMessageOnException(() => {
+            return ros_build_utils.updateCppProperties(context);
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.UpdatePythonPath, () => {
+        ensureErrorMessageOnException(() => {
+            ros_build_utils.updatePythonPath(context);
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.Rosrun, () => {
+        ensureErrorMessageOnException(() => {
+            return ros_cli.rosrun(context);
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.Roslaunch, () => {
+        ensureErrorMessageOnException(() => {
+            return ros_cli.roslaunch(context);
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.Rostest, () => {
+        ensureErrorMessageOnException(() => {
+            return ros_cli.rostest(context);
+        });
+    });
+
+    vscode.commands.registerCommand(Commands.Rosdep, () => {
+        ensureErrorMessageOnException(() => {
+            rosApi.rosdep();
+        });
+    });
+
+
+    reporter.sendTelemetryActivate();
+
+
+    // Activate the workspace environment if possible.
+    await activateEnvironment(context);
+
+    return {
+        getEnv: () => env,
+        onDidChangeEnv: (listener: () => any, thisArg: any) => onDidChangeEnv(listener, thisArg),
+    };
 }
 
 export async function deactivate() {
